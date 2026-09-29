@@ -142,10 +142,12 @@ import re
 
 # --- 1. 配置LLM客户端 ---
 # 请根据您使用的服务，将这里替换成对应的凭证和地址
-API_KEY = "YOUR_API_KEY"
-BASE_URL = "YOUR_BASE_URL"
-MODEL_ID = "YOUR_MODEL_ID"
-os.environ['TAVILY_API_KEY'] = "YOUR_TAVILY_API_KEY"
+API_KEY = os.environ.get("CHAT_DEEPSEEK_API_KEY")
+BASE_URL = "https://api.deepseek.com"
+MODEL_ID = "deepseek-flash"
+
+# 已经在系统变量里面配置了
+# os.environ['TAVILY_API_KEY'] = "YOUR_TAVILY_API_KEY"
 
 llm = OpenAICompatibleClient(
     model=MODEL_ID,
@@ -154,7 +156,7 @@ llm = OpenAICompatibleClient(
 )
 
 # --- 2. 初始化 ---
-user_prompt = "你好，请帮我查询一下今天北京的天气，然后根据天气推荐一个合适的旅游景点。"
+user_prompt = "你好，请帮我查询一下今天广西柳州的天气，然后根据天气推荐一个合适的旅游景点。"
 prompt_history = [f"用户请求: {user_prompt}"]
 
 print(f"用户输入: {user_prompt}\n" + "="*40)
